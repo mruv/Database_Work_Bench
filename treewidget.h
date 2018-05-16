@@ -4,17 +4,21 @@
 
 
 #include <QTreeWidget>
+#include <QTreeWidgetItem>
 #include <QWidget>
 
 
 
-class TreeWidget : public QTreeWidget {
+class ResourceTree : public QTreeWidget {
 
 	Q_OBJECT
 
 
 public:
-	TreeWidget(QWidget * = Q_NULLPTR);
+	ResourceTree(QWidget * = Q_NULLPTR);
+
+public slots:
+	void addResource(QTreeWidgetItem *);
 };
 
 

@@ -9,7 +9,9 @@
 #include <QMainWindow>
 #include <QWidget>
 #include <QIcon>
-
+#include <QMenu>
+#include <QAction>
+#include <QMenuBar>
 
 
 class MainWindow : public QMainWindow {
@@ -19,6 +21,11 @@ class MainWindow : public QMainWindow {
 public:
 	MainWindow(QWidget * = Q_NULLPTR);
 
+	void createMenus();
+	void createMenuBar();
+	void createActions();
+	void setupUi();
+
 public slots:
 
 	void onConnect();
@@ -26,6 +33,14 @@ public slots:
 private:
 	LoginFrame *aLoginFrame;
 	Center *aCenter;
+
+	// menus
+	QMenu *file;
+	QMenu *edit;
+
+	// actions
+	QAction *aNewDbAction;
+	QAction *aNewFileAction;
 };
 
 

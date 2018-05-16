@@ -1,18 +1,19 @@
 
 #include "treewidget.h"
+#include "dbtreewidgetitem.h"
 
-#include <QTreeWidgetItem>
 
 
-TreeWidget::TreeWidget(QWidget *p) : QTreeWidget(p) {
+ResourceTree::ResourceTree(QWidget *p) : QTreeWidget(p) {
 
-	setColumnCount(3);
+	setHeaderLabels({"Resource", "Status"});
 
-	QTreeWidgetItem *x = new QTreeWidgetItem({"Hello"});
+	//DatabaseTreeWidgetItem *db = new DatabaseTreeWidgetItem(tr("root"), tr("mwendwa"), tr("localhost"), tr("QMYSQL"));
 
-	addTopLevelItems({x, new QTreeWidgetItem({"DFGHGHJ"})});
+	//addTopLevelItem(db);
+}
 
-	addTopLevelItem(new QTreeWidgetItem({"SDFGHJKJKJK"}));
+void ResourceTree::addResource(QTreeWidgetItem *resource) {
 
-	x->addChildren({new QTreeWidgetItem({"SDFGHJTY"}), new QTreeWidgetItem({"SDFGHJK"})});
+	addTopLevelItem(resource);
 }

@@ -10,6 +10,8 @@ int main(int argc, char **argv){
 
 	MainWindow w;
 
+	w.setupUi();
 	w.show();
+	
 	return app->exec();
 }

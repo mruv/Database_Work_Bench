@@ -7,9 +7,9 @@
 
 LoginFrame::LoginFrame(QWidget *p) : QFrame(p) {
 
-	aPwdEdit = new QLineEdit();
+	aPwdEdit  = new QLineEdit();
 	aLineEdit = new QLineEdit();
-	aPushBtn = new QPushButton("Connect");
+	aPushBtn  = new QPushButton("Connect");
 
 	aPushBtn->setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed));
 	aLineEdit->setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed));
@@ -25,7 +25,7 @@ LoginFrame::LoginFrame(QWidget *p) : QFrame(p) {
 		
 
 	mainLy = new QVBoxLayout(this);
-	hBox = new QHBoxLayout();
+	hBox   = new QHBoxLayout();
 
 	hBox->addStretch();
 	hBox->addLayout(fLy);
