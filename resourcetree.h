@@ -1,11 +1,16 @@
 
-#ifndef TREEWIDGET_H
-#define TREEWIDGET_H
+#ifndef RESOURCETREE_H
+#define RESOURCETREE_H
+
+
+#include "databaseresourcetreeitem.h"
 
 
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
 #include <QWidget>
+#include <QMap>
+#include <QString>
 
 
 
@@ -18,7 +23,7 @@ public:
 	ResourceTree(QWidget * = Q_NULLPTR);
 
 public slots:
-	void addResource(QTreeWidgetItem *);
+	void onAddDatabaseResource(DatabaseResourceTreeItem *);
 };
 
 

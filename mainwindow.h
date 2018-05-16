@@ -3,7 +3,6 @@
 #define MAINWINDOW_H
 
 
-#include "login.h"
 #include "center.h"
 
 #include <QMainWindow>
@@ -12,6 +11,7 @@
 #include <QMenu>
 #include <QAction>
 #include <QMenuBar>
+#include <QMap>
 
 
 class MainWindow : public QMainWindow {
@@ -27,11 +27,10 @@ public:
 	void setupUi();
 
 public slots:
-
-	void onConnect();
+	
+	void showDatabaseResourceDialog();
 
 private:
-	LoginFrame *aLoginFrame;
 	Center *aCenter;
 
 	// menus

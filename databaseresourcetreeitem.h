@@ -15,6 +15,7 @@ class DatabaseResourceTreeItem : public QTreeWidgetItem {
 public:
 	DatabaseResourceTreeItem(const QString&, const QString&, const QString&, const QString&, QTreeWidgetItem * = Q_NULLPTR);
 
+	void enumerateDatabases();
 
 
 private:

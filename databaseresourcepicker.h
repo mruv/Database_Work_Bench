@@ -3,10 +3,18 @@
 #define DATABASERESOURCEPICKER_H
 
 
+#include "databaseresourcetreeitem.h"
+
 #include <QDialog>
 #include <QFormLayout>
 #include <QLineEdit>
 #include <QPushButton>
+#include <QComboBox>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QSpinBox>
+#include <QMap>
+#include <QString>
 
 
 class DatabaseResourcePicker : public QDialog {
@@ -18,17 +26,24 @@ public:
 	DatabaseResourcePicker(QWidget * = Q_NULLPTR);
 
 	void setupUi();
+	void createLayouts();
+	void createInputFields();
 
 
 signals:
+	void addDatabaseResource(DatabaseResourceTreeItem *);
 
 private:
 
 	QFormLayout *mainLy;
 	QPushButton *addBtn;
+	QComboBox   *drivers;
 	QLineEdit   *user;
 	QLineEdit   *pwd;
 	QLineEdit   *host;
+	QSpinBox    *port;
+	QVBoxLayout *vbox;
+	QHBoxLayout *hbox;
 };
 
 

@@ -1,19 +1,12 @@
 
 #include "mainwindow.h"
-
+#include "databaseresourcepicker.h"
 
 
 
 MainWindow::MainWindow(QWidget *p) 
-	: QMainWindow(p), aLoginFrame(new LoginFrame()), aCenter(new Center()) {
+	: QMainWindow(p), aCenter(new Center()) {
 
-	QObject::connect(aLoginFrame, &LoginFrame::connected, this, &MainWindow::onConnect);
-}
-
-void MainWindow::onConnect() {
-
-	showMaximized();
-	setCentralWidget(aCenter);
 }
 
 
@@ -32,6 +25,7 @@ void MainWindow::createActions() {
 
 	aNewDbAction = new QAction(tr("&New Database"));
 
+	QObject::connect(aNewDbAction, &QAction::triggered, this, &MainWindow::showDatabaseResourceDialog);
 }
 
 void MainWindow::setupUi() {
@@ -48,3 +42,14 @@ void MainWindow::setupUi() {
 
 }
 
+void MainWindow::showDatabaseResourceDialog() {
+
+	DatabaseResourcePicker drp;
+
+	drp.setupUi();
+
+	QObject::connect(&drp, &DatabaseResourcePicker::addDatabaseResource,
+		aCenter, &Center::onAddDatabaseResource);
+
+	drp.exec();
+}

@@ -1,7 +1,9 @@
 
-#include "dbtreewidgetitem.h"
+#include "databaseresourcetreeitem.h"
 
 #include <iostream>
+
+
 
 DatabaseResourceTreeItem::DatabaseResourceTreeItem(
 	const QString& user, const QString& pwd, const QString& host, 
@@ -19,4 +21,9 @@ DatabaseResourceTreeItem::DatabaseResourceTreeItem(
 	} else {
 		std::cout << "Failed\n";
 	}
+}
+
+
+void enumerateDatabases() {
+
 }
