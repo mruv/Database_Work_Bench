@@ -3,7 +3,7 @@
 #define RESOURCETREE_H
 
 
-#include "databaseresourcetreeitem.h"
+#include "databaseresource.h"
 
 
 #include <QTreeWidget>
@@ -23,7 +23,7 @@ public:
 	ResourceTree(QWidget * = Q_NULLPTR);
 
 public slots:
-	void onAddDatabaseResource(DatabaseResourceTreeItem *);
+	void onAddDatabaseResource(DatabaseResource *);
 };
 
 

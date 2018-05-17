@@ -3,7 +3,7 @@
 #define DATABASERESOURCEPICKER_H
 
 
-#include "databaseresourcetreeitem.h"
+#include "databaseresource.h"
 
 #include <QDialog>
 #include <QFormLayout>
@@ -31,7 +31,7 @@ public:
 
 
 signals:
-	void addDatabaseResource(DatabaseResourceTreeItem *);
+	void addDatabaseResource(DatabaseResource *);
 
 private:
 

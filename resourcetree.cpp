@@ -15,7 +15,7 @@ ResourceTree::ResourceTree(QWidget *p) : QTreeWidget(p) {
 }
 
 
-void ResourceTree::onAddDatabaseResource(DatabaseResourceTreeItem *dbResource) {
+void ResourceTree::onAddDatabaseResource(DatabaseResource *dbResource) {
 
 	addTopLevelItem(dbResource);
 

@@ -16,7 +16,7 @@ Center::Center(QWidget *p) : QSplitter(p) {
 }
 
 
-void Center::onAddDatabaseResource(DatabaseResourceTreeItem *dbResource) {
+void Center::onAddDatabaseResource(DatabaseResource *dbResource) {
 
 	emit addDatabaseResource(dbResource);
 }

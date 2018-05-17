@@ -3,7 +3,7 @@
 #define CENTER_H
 
 
-#include "databaseresourcetreeitem.h"
+#include "databaseresource.h"
 #include "tabwidget.h"
 #include "resourcetree.h"
 
@@ -24,10 +24,10 @@ public:
 	Center(QWidget * = Q_NULLPTR);
 
 public slots:
-	void onAddDatabaseResource(DatabaseResourceTreeItem *);
+	void onAddDatabaseResource(DatabaseResource *);
 
 signals:
-	void addDatabaseResource(DatabaseResourceTreeItem *);
+	void addDatabaseResource(DatabaseResource *);
 
 private:
 	QSqlDatabase db;

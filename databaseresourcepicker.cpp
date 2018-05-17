@@ -113,7 +113,7 @@ void DatabaseResourcePicker::createInputFields() {
 	QObject::connect(addBtn, &QPushButton::clicked, [=](){
 		
 		emit addDatabaseResource(
-			new DatabaseResourceTreeItem(
+			new DatabaseResource(
 				user->text(), pwd->text(),
 				host->text(), drvrsMap.value(drivers->currentText())
 				)
