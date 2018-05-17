@@ -5,19 +5,17 @@
 #include <iostream>
 
 
-ResourceTree::ResourceTree(QWidget *p) : QTreeWidget(p) {
+ResourceTree::ResourceTree(QWidget *parent) : QTreeWidget(parent) {
 
 	setHeaderLabels({"Resource"});
-
-	//DatabaseTreeWidgetItem *db = new DatabaseTreeWidgetItem(tr("root"), tr("mwendwa"), tr("localhost"), tr("QMYSQL"));
-
-	//addTopLevelItem(db);
 }
 
 
 void ResourceTree::onAddDatabaseResource(DatabaseResource *dbResource) {
 
 	addTopLevelItem(dbResource);
+
+	dbResource->establishConnection();
 
 	std::cout << "Made It\n";
 }

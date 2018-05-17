@@ -10,7 +10,7 @@
 
 class TabWidget : public QTabWidget {
 
-	Q_OBJECT
+	
 
 public:
 	TabWidget(QWidget * = Q_NULLPTR);
