@@ -3,25 +3,23 @@
 #ifndef DATABASERESOURCE_H
 #define DATABASERESOURCE_H
 
+
+#include "abstractresource.h"
+
 #include <QString>
-#include <QObject>
-#include <QTreeWidgetItem>
 #include <QSqlDatabase>
 
 
 /*
 * Database connection info
 */
-class DatabaseResource : public QObject, public QTreeWidgetItem {
-	
+class DatabaseResource : public AbstractResource {
+
+	Q_OBJECT
 
 public:
-	DatabaseResource(const QString&, const QString&, const QString&, const QString&, const QString&, QTreeWidgetItem * = Q_NULLPTR);
+	explicit DatabaseResource(const QString&, const QString&, const QString&, const QString&, const QString&, QTreeWidgetItem * = Q_NULLPTR);
 	~DatabaseResource();
-
-	void enumerateDatabases();
-	void establishConnection();
-	void onConnect();
 
 	QSqlDatabase database() const;
 	QString user() const;
@@ -31,15 +29,19 @@ public:
 	QString dbms() const;
 
 
+public slots:
+	void establishConnection();
+	void onConnect();
+
 private:
 	// connection
 	QSqlDatabase aDatabase;
 
-	QString aUser;
-	QString aPwd;
-	QString aHost;
-	QString aDriver;
-	QString aDbms;
+	QString      aUser;
+	QString      aPwd;
+	QString      aHost;
+	QString      aDriver;
+	QString      aDbms;
 };
 
 

@@ -3,11 +3,14 @@
 #define DBRTABLE_H
 
 
-#include <QTreeWidgetItem>
+#include "abstractresource.h"
+
 #include <QString>
 
 
-class DbrTable : public QObject, public QTreeWidgetItem {
+
+// Database Resource (Dbr) Table
+class DbrTable : public AbstractResource  {
 
 	Q_OBJECT
 
@@ -15,9 +18,13 @@ public:
 	explicit DbrTable(const QString&, const QString&, QTreeWidgetItem * = Q_NULLPTR);
 	~DbrTable();
 
+	QString schemaName() const;
+	QString tableName() const;
+
+
 private:
-	QString schemaName;
-	QString tableName;
+	QString aSchemaName;
+	QString aTableName;
 };
 
 

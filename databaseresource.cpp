@@ -1,25 +1,26 @@
 
-#include "databaseresource.h"
 #include "dbrschema.h"
 #include "dbrtable.h"
+#include "databaseresource.h"
 
-#include <iostream>
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QAction>
 
 
 
 DatabaseResource::DatabaseResource(
 	const QString& user, const QString& pwd, const QString& host, 
 		const QString& driverName, const QString& dbmsName, QTreeWidgetItem *parent) 
-			: QTreeWidgetItem(parent, QTreeWidgetItem::UserType), aUser(user), aPwd(pwd), aHost(host), aDriver(driverName), aDbms(dbmsName) {
+			: AbstractResource(ResourceType::DatabaseConnection, parent), aUser(user), aPwd(pwd), 
+				aHost(host), aDriver(driverName), aDbms(dbmsName) {
 
-	setText(0, host + " | " + user + " | " + dbmsName);
+	;
+	setText(0, aHost + " | " + aUser + " | " + aDbms);
 }
 
 // destroy
 DatabaseResource::~DatabaseResource() {
-	std::cout << "Closed\n";
 	aDatabase.close();
 }
 
@@ -37,7 +38,7 @@ void DatabaseResource::establishConnection() {
 			onConnect();
 
 		} else {
-			std::cout << aDatabase.lastError().text().toStdString() << std::endl; 
+			//std::cout << aDatabase.lastError().text().toStdString() << std::endl; 
 		}
 	}
 }

@@ -5,10 +5,17 @@
 
 
 DbrTable::DbrTable(const QString& schemaName, const QString& tableName, QTreeWidgetItem *parent) 
-	: QTreeWidgetItem(parent, QTreeWidgetItem::UserType), schemaName(schemaName), tableName(tableName) {
+	: AbstractResource(ResourceType::Table, parent), aSchemaName(schemaName), aTableName(tableName) {
 
 	setText(0, tableName);
-	//addAction(new QAction("View data"));
 }
 
 DbrTable::~DbrTable() { }
+
+QString DbrTable::schemaName() const {
+	return aSchemaName;
+}
+
+QString DbrTable::tableName() const {
+	return aTableName;
+}

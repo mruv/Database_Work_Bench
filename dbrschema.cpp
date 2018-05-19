@@ -4,9 +4,13 @@
 
 
 DbrSchema::DbrSchema(const QString& schemaName, QTreeWidgetItem *parent)
-	: QTreeWidgetItem(parent, QTreeWidgetItem::UserType), schemaName(schemaName) {
+	: AbstractResource(ResourceType::Database, parent), aSchemaName(schemaName) {
 
-	setText(0, schemaName);
+	setText(0, aSchemaName);
 }
 
 DbrSchema::~DbrSchema() { }
+
+QString DbrSchema::schemaName() const {
+	return aSchemaName;
+}

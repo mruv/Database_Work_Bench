@@ -23,7 +23,8 @@ class DatabaseResourcePicker : public QDialog {
 
 
 public:
-	DatabaseResourcePicker(QWidget * = Q_NULLPTR);
+	explicit DatabaseResourcePicker(QWidget * = Q_NULLPTR);
+	~DatabaseResourcePicker();
 
 	void setupUi();
 	void createLayouts();

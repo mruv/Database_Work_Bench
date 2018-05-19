@@ -16,6 +16,7 @@ DatabaseResourcePicker::DatabaseResourcePicker(QWidget *p)
 
 }
 
+DatabaseResourcePicker::~DatabaseResourcePicker() { }
 
 void DatabaseResourcePicker::setupUi() {
 
