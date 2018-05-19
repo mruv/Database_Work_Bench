@@ -9,29 +9,37 @@
 #include <QSqlDatabase>
 
 
-
+/*
+* Database connection info
+*/
 class DatabaseResource : public QObject, public QTreeWidgetItem {
-
 	
 
 public:
 	DatabaseResource(const QString&, const QString&, const QString&, const QString&, const QString&, QTreeWidgetItem * = Q_NULLPTR);
-	~DatabaseResource() {}
+	~DatabaseResource();
 
 	void enumerateDatabases();
 	void establishConnection();
 	void onConnect();
 
+	QSqlDatabase database() const;
+	QString user() const;
+	QString pwd() const;
+	QString host() const;
+	QString driver() const;
+	QString dbms() const;
+
 
 private:
-	QSqlDatabase db;
-
 	// connection
-	QString user;
-	QString pwd;
-	QString host;
-	QString driverName;
-	QString dbmsName;
+	QSqlDatabase aDatabase;
+
+	QString aUser;
+	QString aPwd;
+	QString aHost;
+	QString aDriver;
+	QString aDbms;
 };
 
 

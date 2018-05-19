@@ -9,5 +9,4 @@ DbrSchema::DbrSchema(const QString& schemaName, QTreeWidgetItem *parent)
 	setText(0, schemaName);
 }
 
-
 DbrSchema::~DbrSchema() { }

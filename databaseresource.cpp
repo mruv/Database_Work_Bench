@@ -12,44 +12,51 @@
 DatabaseResource::DatabaseResource(
 	const QString& user, const QString& pwd, const QString& host, 
 		const QString& driverName, const QString& dbmsName, QTreeWidgetItem *parent) 
-			: QTreeWidgetItem(parent, QTreeWidgetItem::UserType), user(user), pwd(pwd), host(host), driverName(driverName), dbmsName(dbmsName) {
+			: QTreeWidgetItem(parent, QTreeWidgetItem::UserType), aUser(user), aPwd(pwd), aHost(host), aDriver(driverName), aDbms(dbmsName) {
 
 	setText(0, host + " | " + user + " | " + dbmsName);
 }
 
+// destroy
+DatabaseResource::~DatabaseResource() {
+	std::cout << "Closed\n";
+	aDatabase.close();
+}
 
 void DatabaseResource::establishConnection() {
 
 
-	if(!db.isOpen()){// should not be connected
+	if(!aDatabase.isOpen()){// should not be connected
 
-		db = QSqlDatabase::addDatabase(driverName);
-		db.setUserName(user);
-		db.setHostName(host);
-		db.setPassword(pwd);
+		aDatabase = QSqlDatabase::addDatabase(aDriver);
+		aDatabase.setHostName(aHost);
+		aDatabase.setUserName(aUser);
+		aDatabase.setPassword(aPwd);
 
-		if(db.open()) {
+		if(aDatabase.open()) {
 			onConnect();
 
 		} else {
-			std::cout << db.lastError().text().toStdString() << std::endl; 
+			std::cout << aDatabase.lastError().text().toStdString() << std::endl; 
 		}
 	}
 }
 
-
+// display all databases and tables after a successful connection
 void DatabaseResource::onConnect(){
 
-	QSqlQuery dbsQuery("SHOW DATABASES", db);
+	QSqlQuery dbsQuery("SHOW DATABASES", aDatabase);
 
+	// all databases
 	while (dbsQuery.next()) {
 
 		QString schemaName   = dbsQuery.value(0).toString();
 		DbrSchema *dbrSchema = new DbrSchema(schemaName, this);
 
-		QSqlQuery tsQuery("USE " + schemaName, db);
+		QSqlQuery tsQuery("USE " + schemaName, aDatabase);
 		tsQuery.exec("SHOW TABLES");
 
+		// all tables in each database
 		while (tsQuery.next()) {
 
 			QString tableName = tsQuery.value(0).toString();
@@ -58,4 +65,28 @@ void DatabaseResource::onConnect(){
 		
 		setExpanded(true);
 	}
+}
+
+QSqlDatabase DatabaseResource::database() const {
+	return aDatabase;
+}
+
+QString DatabaseResource::user() const {
+	return aUser;
+}
+
+QString DatabaseResource::pwd() const {
+	return aPwd;
+}
+
+QString DatabaseResource::host() const {
+	return aHost;
+}
+
+QString DatabaseResource::driver() const {
+	return aDriver;
+}
+
+QString DatabaseResource::dbms() const {
+	return aDbms;
 }

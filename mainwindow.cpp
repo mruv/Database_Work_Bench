@@ -3,10 +3,10 @@
 #include "databaseresourcepicker.h"
 
 
+#include <iostream>
 
 MainWindow::MainWindow(QWidget *p) 
 	: QMainWindow(p), aCenter(new Center()) {
-
 }
 
 

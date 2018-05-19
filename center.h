@@ -16,12 +16,14 @@
 #include <QString>
 
 
+// Application central widget
 class Center : public QSplitter {
 
 	Q_OBJECT
 
 public:
-	Center(QWidget * = Q_NULLPTR);
+	explicit Center(QWidget * = Q_NULLPTR);
+	~Center();
 
 public slots:
 	void onAddDatabaseResource(DatabaseResource *);
@@ -30,8 +32,7 @@ signals:
 	void addDatabaseResource(DatabaseResource *);
 
 private:
-	QSqlDatabase db;
-	ResourceTree *aTreeWidget;
+	ResourceTree *aResourceTree;
 	TabWidget *aTabWidget;
 };
 
