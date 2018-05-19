@@ -4,8 +4,10 @@
 #include <QAction>
 
 
-DbrTable::DbrTable(const QString& schemaName, const QString& tableName, QTreeWidgetItem *parent) 
-	: AbstractResource(ResourceType::Table, parent), aSchemaName(schemaName), aTableName(tableName) {
+DbrTable::DbrTable(const QString& schemaName, const QString& tableName, 
+	const QString& connectionName, QTreeWidgetItem *parent)
+		: AbstractResource(ResourceType::Table, parent), aSchemaName(schemaName), 
+			aTableName(tableName), aConnectionName(connectionName) {
 
 	setText(0, tableName);
 }
@@ -18,4 +20,8 @@ QString DbrTable::schemaName() const {
 
 QString DbrTable::tableName() const {
 	return aTableName;
+}
+
+QString DbrTable::connectionName() const {
+	return aConnectionName;
 }

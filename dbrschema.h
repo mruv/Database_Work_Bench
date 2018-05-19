@@ -17,13 +17,15 @@ class DbrSchema : public AbstractResource {
 
 
 public:
-	explicit DbrSchema(const QString&, QTreeWidgetItem * = Q_NULLPTR);
+	explicit DbrSchema(const QString&, const QString&, QTreeWidgetItem * = Q_NULLPTR);
 	~DbrSchema();
 
 	QString schemaName() const;
+	QString connectionName() const;
 
 private:
 	QString aSchemaName;
+	QString aConnectionName;
 };
 
 

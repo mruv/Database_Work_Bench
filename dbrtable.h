@@ -15,16 +15,18 @@ class DbrTable : public AbstractResource  {
 	Q_OBJECT
 
 public:
-	explicit DbrTable(const QString&, const QString&, QTreeWidgetItem * = Q_NULLPTR);
+	explicit DbrTable(const QString&, const QString&, const QString&, QTreeWidgetItem * = Q_NULLPTR);
 	~DbrTable();
 
 	QString schemaName() const;
 	QString tableName() const;
+	QString connectionName() const;
 
 
 private:
 	QString aSchemaName;
 	QString aTableName;
+	QString aConnectionName;
 };
 
 

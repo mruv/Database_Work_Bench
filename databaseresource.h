@@ -27,6 +27,7 @@ public:
 	QString host() const;
 	QString driver() const;
 	QString dbms() const;
+	QString connectionName() const;
 
 
 public slots:
@@ -42,6 +43,7 @@ private:
 	QString      aHost;
 	QString      aDriver;
 	QString      aDbms;
+	QString      aConnectionName;
 };
 
 

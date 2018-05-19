@@ -7,11 +7,13 @@
 #include "dbrtable.h"
 #include "dbrschema.h"
 #include "databaseresource.h"
+#include "tabledatapage.h"
 
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
+#include <QTableView>
+#include <QSqlDatabase>
 #include <QWidget>
-#include <QMap>
 #include <QString>
 #include <QAction>
 #include <QMenu>
@@ -38,16 +40,25 @@ public:
 
 public slots:
 	void onAddDatabaseResource(DatabaseResource *);
-	void onViewTableData();
 	void onCustomContextMenuRequest(const QPoint&);
 
+signals:
+	void addTableDataPage(TableDataPage *);
+
 private:
-	// database connection context menu
-	QMenu *aDbConnContextMenu;
-	// database resource context menu
-	QMenu *aDbrContextMenu;
-	// database table resource context menu
-	QMenu *aTrContextMenu;
+	// context menus
+	QMenu   *aDbConnContextMenu; // database connection
+	QMenu   *aDbrContextMenu; // database
+	QMenu   *aTrContextMenu; // table
+
+	// actions
+	QAction *aViewTableDataAction;
+	QAction *aNewTableAction;
+	QAction *aNewDbAction;
+	QAction *aDropDbAction; // drop database
+	QAction *aDeleteTableAction; // delete a table
+	QAction *aConnectAction;
+	QAction *aDisconnectAction;
 };
 
 

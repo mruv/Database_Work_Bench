@@ -13,13 +13,17 @@
 class TableDataPage : public QFrame {
 
 public:
-	explicit TableDataPage(QTableView *, QSqlTableModel *, QWidget * = Q_NULLPTR);
+	explicit TableDataPage(const QString&, const QString&, const QSqlDatabase&, QWidget * = Q_NULLPTR);
 	~TableDataPage();
+
+	QString pageLabel();
 
 
 private:
-	QSqlTableModel *model;
-	QTableView     *view;
+	QSqlTableModel *aSqlTableModel;
+	QTableView     *aTableView;
+	QString        aTableName;
+	QString        aSchemaName;
 };
 
 #endif

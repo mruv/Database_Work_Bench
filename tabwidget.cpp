@@ -2,8 +2,15 @@
 #include "tabwidget.h"
 
 
-TabWidget::TabWidget(QWidget *p) : QTabWidget(p) {
+TabWidget::TabWidget(QWidget *parent) : QTabWidget(parent) {
 
-	addTab(new QWidget(), "one");
-	addTab(new QWidget(), "two");	
+	setTabsClosable(true);	
+}
+
+TabWidget::~TabWidget() { }
+
+void TabWidget::onAddTab(TableDataPage *page) {
+
+	// a new tab
+	addTab(page, page->pageLabel());
 }
