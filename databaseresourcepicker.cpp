@@ -115,7 +115,8 @@ void DatabaseResourcePicker::createInputFields() {
 		emit addDatabaseResource(
 			new DatabaseResource(
 				user->text(), pwd->text(),
-				host->text(), drvrsMap.value(drivers->currentText())
+				host->text(), drvrsMap.value(drivers->currentText()),
+				drivers->currentText()
 				)
 			);
 

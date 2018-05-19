@@ -4,7 +4,10 @@
 
 
 DbrSchema::DbrSchema(const QString& schemaName, QTreeWidgetItem *parent)
-	: QTreeWidgetItem(parent), schemaName(schemaName) {
+	: QTreeWidgetItem(parent, QTreeWidgetItem::UserType), schemaName(schemaName) {
 
 	setText(0, schemaName);
 }
+
+
+DbrSchema::~DbrSchema() { }

@@ -13,7 +13,7 @@ class DbrTable : public QObject, public QTreeWidgetItem {
 
 public:
 	explicit DbrTable(const QString&, const QString&, QTreeWidgetItem * = Q_NULLPTR);
-	~DbrTable() {}
+	~DbrTable();
 
 private:
 	QString schemaName;

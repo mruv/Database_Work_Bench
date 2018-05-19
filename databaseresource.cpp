@@ -11,10 +11,10 @@
 
 DatabaseResource::DatabaseResource(
 	const QString& user, const QString& pwd, const QString& host, 
-		const QString& driverName, QTreeWidgetItem *parent) 
-			: QTreeWidgetItem(parent), user(user), pwd(pwd), host(host), driverName(driverName) {
+		const QString& driverName, const QString& dbmsName, QTreeWidgetItem *parent) 
+			: QTreeWidgetItem(parent, QTreeWidgetItem::UserType), user(user), pwd(pwd), host(host), driverName(driverName), dbmsName(dbmsName) {
 
-	setText(0, host + " | " + user + " | " + driverName);
+	setText(0, host + " | " + user + " | " + dbmsName);
 }
 
 
@@ -38,30 +38,24 @@ void DatabaseResource::establishConnection() {
 }
 
 
-void DatabaseResource::enumerateDatabases() {
-
-}
-
-
 void DatabaseResource::onConnect(){
 
-	QSqlQuery dbsQuery;
-
-	// list databases
-	dbsQuery.exec("SHOW DATABASES");
+	QSqlQuery dbsQuery("SHOW DATABASES", db);
 
 	while (dbsQuery.next()) {
-		QString schema = dbsQuery.value(0).toString();
 
-		addChild(new DbrSchema(schema));
+		QString schemaName   = dbsQuery.value(0).toString();
+		DbrSchema *dbrSchema = new DbrSchema(schemaName, this);
 
-		db.setDatabaseName(schema);
+		QSqlQuery tsQuery("USE " + schemaName, db);
+		tsQuery.exec("SHOW TABLES");
 
-		std::cout << schema.toStdString() << std::endl;
+		while (tsQuery.next()) {
 
-		/*for(QString x : db.tables()){
-			std::cout << x.toStdString() << std::endl;
-		}*/
+			QString tableName = tsQuery.value(0).toString();
+			dbrSchema->addChild(new DbrTable(schemaName, tableName, dbrSchema));
+		}
 		
+		setExpanded(true);
 	}
 }

@@ -15,7 +15,7 @@ class DatabaseResource : public QObject, public QTreeWidgetItem {
 	
 
 public:
-	DatabaseResource(const QString&, const QString&, const QString&, const QString&, QTreeWidgetItem * = Q_NULLPTR);
+	DatabaseResource(const QString&, const QString&, const QString&, const QString&, const QString&, QTreeWidgetItem * = Q_NULLPTR);
 	~DatabaseResource() {}
 
 	void enumerateDatabases();
@@ -31,6 +31,7 @@ private:
 	QString pwd;
 	QString host;
 	QString driverName;
+	QString dbmsName;
 };
 
 

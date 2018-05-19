@@ -15,7 +15,7 @@ class DbrSchema : public QObject, public QTreeWidgetItem {
 
 public:
 	explicit DbrSchema(const QString&, QTreeWidgetItem * = Q_NULLPTR);
-	~DbrSchema() {}
+	~DbrSchema();
 
 private:
 	QString schemaName;

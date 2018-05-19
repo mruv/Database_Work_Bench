@@ -20,10 +20,12 @@ class ResourceTree : public QTreeWidget {
 
 
 public:
-	ResourceTree(QWidget * = Q_NULLPTR);
+	explicit ResourceTree(QWidget * = Q_NULLPTR);
+	~ResourceTree();
 
 public slots:
 	void onAddDatabaseResource(DatabaseResource *);
+	void onViewTableData();
 };
 
 

@@ -10,12 +10,14 @@ ResourceTree::ResourceTree(QWidget *parent) : QTreeWidget(parent) {
 	setHeaderLabels({"Resource"});
 }
 
+ResourceTree::~ResourceTree() { }
 
 void ResourceTree::onAddDatabaseResource(DatabaseResource *dbResource) {
 
 	addTopLevelItem(dbResource);
-
 	dbResource->establishConnection();
+}
 
-	std::cout << "Made It\n";
+void ResourceTree::onViewTableData() {
+
 }
