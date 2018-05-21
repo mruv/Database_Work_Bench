@@ -21,21 +21,21 @@ class MainWindow : public QMainWindow {
 public:
 	MainWindow(QWidget * = Q_NULLPTR);
 
-	void createMenus();
-	void createMenuBar();
-	void createActions();
-	void setupUi();
+	void CreateMenus();
+	void CreateMenuBar();
+	void CreateActions();
+	void SetupUi();
 
 public slots:
 	
-	void showDatabaseResourceDialog();
+	void ShowDatabaseResourceDialog();
 
 private:
 	Center *aCenter;
 
 	// menus
-	QMenu *file;
-	QMenu *edit;
+	QMenu *aFileMenu;
+	QMenu *EditMenu;
 
 	// actions
 	QAction *aNewDbAction;

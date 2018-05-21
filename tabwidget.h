@@ -10,20 +10,21 @@
 #include <QSqlDatabase>
 
 
-
 class TabWidget : public QTabWidget {
 
+	Q_OBJECT
 	
 
 public:
 	explicit TabWidget(QWidget * = Q_NULLPTR);
 	~TabWidget();
 
+	void SetupUi();
 
 public slots:
-	void onAddTab(TableDataPage *);
+	void OnCloseTabRequest(int);
+	void OnAddTab(TableDataPage *);
 };
-
 
 
 #endif

@@ -15,7 +15,7 @@ public:
 	explicit AbstractResource(ResourceType, QTreeWidgetItem * = Q_NULLPTR);
 	virtual ~AbstractResource();
 
-	ResourceType resourceType() const;
+	ResourceType Type() const;
 
 
 protected:

@@ -9,19 +9,19 @@ DbrTable::DbrTable(const QString& schemaName, const QString& tableName,
 		: AbstractResource(ResourceType::Table, parent), aSchemaName(schemaName), 
 			aTableName(tableName), aConnectionName(connectionName) {
 
-	setText(0, tableName);
+	setText(0, aTableName);
 }
 
 DbrTable::~DbrTable() { }
 
-QString DbrTable::schemaName() const {
+QString DbrTable::SchemaName() const {
 	return aSchemaName;
 }
 
-QString DbrTable::tableName() const {
+QString DbrTable::TableName() const {
 	return aTableName;
 }
 
-QString DbrTable::connectionName() const {
+QString DbrTable::ConnectionName() const {
 	return aConnectionName;
 }

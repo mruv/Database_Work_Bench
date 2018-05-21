@@ -26,13 +26,13 @@ public:
 	explicit DatabaseResourcePicker(QWidget * = Q_NULLPTR);
 	~DatabaseResourcePicker();
 
-	void setupUi();
-	void createLayouts();
-	void createInputFields();
+	void SetupUi();
+	void CreateLayouts();
+	void CreateInputFields();
 
 
 signals:
-	void addDatabaseResource(DatabaseResource *);
+	void AddDatabaseResource(DatabaseResource *);
 
 private:
 

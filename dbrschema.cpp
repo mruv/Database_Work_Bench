@@ -11,10 +11,10 @@ DbrSchema::DbrSchema(const QString& schemaName, const QString& connectionName, Q
 
 DbrSchema::~DbrSchema() { }
 
-QString DbrSchema::schemaName() const {
+QString DbrSchema::SchemaName() const {
 	return aSchemaName;
 }
 
-QString DbrSchema::connectionName() const {
+QString DbrSchema::ConnectionName() const {
 	return aConnectionName;
 }

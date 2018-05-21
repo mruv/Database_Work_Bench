@@ -20,10 +20,10 @@ DatabaseResource::DatabaseResource(
 
 // destroy
 DatabaseResource::~DatabaseResource() {
-	aDatabase.close();
+	//aDatabase.close();
 }
 
-void DatabaseResource::establishConnection() {
+void DatabaseResource::EstablishConnection() {
 
 
 	if(!aDatabase.isOpen()){// should not be connected
@@ -34,7 +34,7 @@ void DatabaseResource::establishConnection() {
 		aDatabase.setPassword(aPwd);
 
 		if(aDatabase.open()) {
-			onConnect();
+			OnConnect();
 
 		} else {
 			//std::cout << aDatabase.lastError().text().toStdString() << std::endl; 
@@ -43,7 +43,7 @@ void DatabaseResource::establishConnection() {
 }
 
 // display all databases and tables after a successful connection
-void DatabaseResource::onConnect(){
+void DatabaseResource::OnConnect(){
 
 	QSqlQuery dbsQuery("SHOW DATABASES", aDatabase);
 
@@ -67,30 +67,30 @@ void DatabaseResource::onConnect(){
 	}
 }
 
-QSqlDatabase DatabaseResource::database() const {
+QSqlDatabase DatabaseResource::Database() const {
 	return aDatabase;
 }
 
-QString DatabaseResource::user() const {
+QString DatabaseResource::User() const {
 	return aUser;
 }
 
-QString DatabaseResource::pwd() const {
+QString DatabaseResource::Pwd() const {
 	return aPwd;
 }
 
-QString DatabaseResource::host() const {
+QString DatabaseResource::Host() const {
 	return aHost;
 }
 
-QString DatabaseResource::driver() const {
+QString DatabaseResource::Driver() const {
 	return aDriver;
 }
 
-QString DatabaseResource::dbms() const {
+QString DatabaseResource::Dbms() const {
 	return aDbms;
 }
 
-QString DatabaseResource::connectionName() const {
+QString DatabaseResource::ConnectionName() const {
 	return aConnectionName;
 }

@@ -18,17 +18,17 @@ DatabaseResourcePicker::DatabaseResourcePicker(QWidget *p)
 
 DatabaseResourcePicker::~DatabaseResourcePicker() { }
 
-void DatabaseResourcePicker::setupUi() {
+void DatabaseResourcePicker::SetupUi() {
 
-	createInputFields();
-	createLayouts();
+	CreateInputFields();
+	CreateLayouts();
 
 	setWindowTitle("Database Resource");
 	setFixedSize(400, 300);
 }
 
 
-void DatabaseResourcePicker::createLayouts() {
+void DatabaseResourcePicker::CreateLayouts() {
 
 	vbox = new QVBoxLayout(this);
 	hbox = new QHBoxLayout();
@@ -51,7 +51,7 @@ void DatabaseResourcePicker::createLayouts() {
 	vbox->addStretch();
 }
 
-void DatabaseResourcePicker::createInputFields() {
+void DatabaseResourcePicker::CreateInputFields() {
 
 	pwd->setEchoMode(QLineEdit::Password);
 	addBtn->setDisabled(true);
@@ -113,7 +113,7 @@ void DatabaseResourcePicker::createInputFields() {
 
 	QObject::connect(addBtn, &QPushButton::clicked, [=](){
 		
-		emit addDatabaseResource(
+		emit AddDatabaseResource(
 			new DatabaseResource(
 				user->text(), pwd->text(),
 				host->text(), drvrsMap.value(drivers->currentText()),

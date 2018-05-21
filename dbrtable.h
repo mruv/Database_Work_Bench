@@ -18,9 +18,9 @@ public:
 	explicit DbrTable(const QString&, const QString&, const QString&, QTreeWidgetItem * = Q_NULLPTR);
 	~DbrTable();
 
-	QString schemaName() const;
-	QString tableName() const;
-	QString connectionName() const;
+	QString SchemaName() const;
+	QString TableName() const;
+	QString ConnectionName() const;
 
 
 private:

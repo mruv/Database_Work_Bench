@@ -21,18 +21,18 @@ public:
 	explicit DatabaseResource(const QString&, const QString&, const QString&, const QString&, const QString&, QTreeWidgetItem * = Q_NULLPTR);
 	~DatabaseResource();
 
-	QSqlDatabase database() const;
-	QString user() const;
-	QString pwd() const;
-	QString host() const;
-	QString driver() const;
-	QString dbms() const;
-	QString connectionName() const;
+	QSqlDatabase Database() const;
+	QString User() const;
+	QString Pwd() const;
+	QString Host() const;
+	QString Driver() const;
+	QString Dbms() const;
+	QString ConnectionName() const;
 
 
 public slots:
-	void establishConnection();
-	void onConnect();
+	void EstablishConnection();
+	void OnConnect();
 
 private:
 	// connection

@@ -10,6 +10,6 @@ AbstractResource::AbstractResource(ResourceType rType, QTreeWidgetItem *parent)
 
 AbstractResource::~AbstractResource() { }
 
-ResourceType AbstractResource::resourceType() const {
+ResourceType AbstractResource::Type() const {
 	return aResourceType;
 }

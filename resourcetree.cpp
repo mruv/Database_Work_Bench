@@ -8,36 +8,36 @@ ResourceTree::ResourceTree(QWidget *parent) : QTreeWidget(parent) {
 	setContextMenuPolicy(Qt::CustomContextMenu);
 
 	QObject::connect(this, &ResourceTree::customContextMenuRequested,
-		this, &ResourceTree::onCustomContextMenuRequest);
+		this, &ResourceTree::OnCustomContextMenuRequest);
 }
 
 ResourceTree::~ResourceTree() { }
 
-void ResourceTree::onAddDatabaseResource(DatabaseResource *dbResource) {
+void ResourceTree::OnAddDatabaseResource(DatabaseResource *dbResource) {
 
 	addTopLevelItem(dbResource);
-	dbResource->establishConnection();
+	dbResource->EstablishConnection();
 }
 
-void ResourceTree::onCustomContextMenuRequest(const QPoint& pos) {
+void ResourceTree::OnCustomContextMenuRequest(const QPoint& pos) {
 
 	AbstractResource* resource = static_cast<AbstractResource *>(itemAt(pos));
 
         if (resource) {
 
         	// display appropriate context menu
-        	switch(resource->resourceType()) {
+        	switch(resource->Type()) {
 
         		case ResourceType::DatabaseConnection:
-        		showConnectionContextMenu(pos);
+        		ShowConnectionContextMenu(pos);
         		break;
 
         		case ResourceType::Database:
-        		showDatabaseContextMenu(pos);
+        		ShowDatabaseContextMenu(pos);
         		break;
 
         		case ResourceType::Table:
-        		showTableContextMenu(pos);
+        		ShowTableContextMenu(pos);
         		break;
         		
         		default:
@@ -47,7 +47,7 @@ void ResourceTree::onCustomContextMenuRequest(const QPoint& pos) {
         } 
 }
 
-void ResourceTree::showConnectionContextMenu(const QPoint& pos) {
+void ResourceTree::ShowConnectionContextMenu(const QPoint& pos) {
 
 	DatabaseResource *dbRsc = static_cast<DatabaseResource *>(itemAt(pos));
 
@@ -66,7 +66,7 @@ void ResourceTree::showConnectionContextMenu(const QPoint& pos) {
 	} 
 }
 
-void ResourceTree::showDatabaseContextMenu(const QPoint& pos) {
+void ResourceTree::ShowDatabaseContextMenu(const QPoint& pos) {
 
 	DbrSchema *dbSchm = static_cast<DbrSchema *>(itemAt(pos));
 
@@ -83,7 +83,7 @@ void ResourceTree::showDatabaseContextMenu(const QPoint& pos) {
 	} 
 }
 
-void ResourceTree::showTableContextMenu(const QPoint& pos) {
+void ResourceTree::ShowTableContextMenu(const QPoint& pos) {
 
 	DbrTable *dbTbl = static_cast<DbrTable *>(itemAt(pos));
 
@@ -93,11 +93,15 @@ void ResourceTree::showTableContextMenu(const QPoint& pos) {
 		if(act == aViewTableDataAction) {
 			
 
-			if(QSqlDatabase::contains(dbTbl->connectionName())) {
-				emit addTableDataPage(
-					new TableDataPage(dbTbl->schemaName(), dbTbl->tableName(), 
-						QSqlDatabase::database(dbTbl->connectionName()))
-					);
+			if(QSqlDatabase::contains(dbTbl->ConnectionName())) {
+
+				TableDataPage *newTab = new TableDataPage(dbTbl->SchemaName(), dbTbl->TableName(),
+					QSqlDatabase::database(dbTbl->ConnectionName()));
+
+
+				newTab->SetupUi();
+				emit AddTableDataPage(newTab);
+
 			} else {
 				// no such connection
 			}
@@ -110,7 +114,7 @@ void ResourceTree::showTableContextMenu(const QPoint& pos) {
 	} 
 }
 
-void ResourceTree::createContextMenus() {
+void ResourceTree::CreateContextMenus() {
 
 	aDbConnContextMenu = new QMenu(this);
 	aDbrContextMenu    = new QMenu(this);

@@ -20,8 +20,8 @@ public:
 	explicit DbrSchema(const QString&, const QString&, QTreeWidgetItem * = Q_NULLPTR);
 	~DbrSchema();
 
-	QString schemaName() const;
-	QString connectionName() const;
+	QString SchemaName() const;
+	QString ConnectionName() const;
 
 private:
 	QString aSchemaName;

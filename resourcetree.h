@@ -32,18 +32,18 @@ public:
 	explicit ResourceTree(QWidget * = Q_NULLPTR);
 	~ResourceTree();
 
-	void createContextMenus();
+	void CreateContextMenus();
 
-	void showConnectionContextMenu(const QPoint&);
-	void showDatabaseContextMenu(const QPoint&);
-	void showTableContextMenu(const QPoint&);
+	void ShowConnectionContextMenu(const QPoint&);
+	void ShowDatabaseContextMenu(const QPoint&);
+	void ShowTableContextMenu(const QPoint&);
 
 public slots:
-	void onAddDatabaseResource(DatabaseResource *);
-	void onCustomContextMenuRequest(const QPoint&);
+	void OnAddDatabaseResource(DatabaseResource *);
+	void OnCustomContextMenuRequest(const QPoint&);
 
 signals:
-	void addTableDataPage(TableDataPage *);
+	void AddTableDataPage(TableDataPage *);
 
 private:
 	// context menus

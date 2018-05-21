@@ -21,15 +21,16 @@ class Center : public QSplitter {
 
 	Q_OBJECT
 
+
 public:
 	explicit Center(QWidget * = Q_NULLPTR);
 	~Center();
 
 public slots:
-	void onAddDatabaseResource(DatabaseResource *);
+	void OnAddDatabaseResource(DatabaseResource *);
 
 signals:
-	void addDatabaseResource(DatabaseResource *);
+	void AddDatabaseResource(DatabaseResource *);
 
 private:
 	ResourceTree *aResourceTree;
