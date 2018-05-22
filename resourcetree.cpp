@@ -131,3 +131,8 @@ void ResourceTree::CreateContextMenus() {
 	aViewTableDataAction = aTrContextMenu->addAction("View data");
 	aDeleteTableAction   = aTrContextMenu->addAction("Delete");
 }
+
+void ResourceTree::Style() const {
+
+	
+}

@@ -5,10 +5,10 @@
 #include "resourcetype.h"
 
 #include <QTreeWidgetItem>
-#include <QObject>
+#include <QWidget>
 
 
-class AbstractResource : public QObject, public QTreeWidgetItem {
+class AbstractResource : public QWidget, public QTreeWidgetItem {
 
 
 public:

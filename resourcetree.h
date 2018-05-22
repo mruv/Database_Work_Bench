@@ -37,6 +37,7 @@ public:
 	void ShowConnectionContextMenu(const QPoint&);
 	void ShowDatabaseContextMenu(const QPoint&);
 	void ShowTableContextMenu(const QPoint&);
+	void Style() const;
 
 public slots:
 	void OnAddDatabaseResource(DatabaseResource *);

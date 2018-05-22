@@ -2,6 +2,7 @@
 #include "tabledatapage.h"
 
 #include <QSqlQuery>
+#include <QHeaderView>
 
 
 TableDataPage::TableDataPage(const QString& schemaName, const QString& tableName, 

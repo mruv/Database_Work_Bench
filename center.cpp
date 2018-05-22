@@ -7,6 +7,8 @@ Center::Center(QWidget *p)
 	: QSplitter(p), aResourceTree(new ResourceTree()), aTabWidget(new TabWidget()) {
 	
 	aResourceTree->CreateContextMenus();
+	aResourceTree->Style();
+
 	aTabWidget->SetupUi();
 
 	addWidget(aResourceTree);

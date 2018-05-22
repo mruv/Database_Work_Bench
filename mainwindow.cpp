@@ -36,6 +36,18 @@ void MainWindow::SetupUi() {
 	setMinimumSize(600, 400);
 	showMaximized();
 
+	
+
+	setStyleSheet(
+		"QScrollBar:vertical { width: 6px; border: 0; background-color: #999; }"
+		"QScrollBar:horizontal { height: 6px; border: 0; background-color: #999; }"
+		"QScrollBar::handle:vertical {background-color: #666; border-radius: 3px; }"
+		"QScrollBar::handle:horizontal {background-color: #666; border-radius: 3px; }"
+		"QScrollBar::add-line:horizontal { border: none; background: none; }"
+		"QScrollBar::sub-line:horizontal { border: none; background: none; }"
+		"QScrollBar::add-line:vertical { border: none; background: none; }"
+		"QScrollBar::sub-line:vertical { border: none; background: none; }"
+		);
 }
 
 void MainWindow::ShowDatabaseResourceDialog() {

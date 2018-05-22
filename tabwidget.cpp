@@ -25,4 +25,10 @@ void TabWidget::SetupUi() {
 
 	setTabsClosable(true);
 	setMovable(true);
+
+	/*setStyleSheet(
+		"QWidget {"
+		"background-color: #bbb;"
+		"}"
+	);*/
 }
