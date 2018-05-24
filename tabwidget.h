@@ -20,6 +20,7 @@ public:
 	~TabWidget();
 
 	void SetupUi();
+	void Style();
 
 public slots:
 	void OnCloseTabRequest(int);

@@ -35,7 +35,7 @@ private:
 
 	// menus
 	QMenu *aFileMenu;
-	QMenu *EditMenu;
+	QMenu *aEditMenu;
 
 	// actions
 	QAction *aNewDbAction;

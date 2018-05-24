@@ -11,6 +11,11 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QString>
+#include <QSqlQuery>
+#include <QSqlRecord>
+#include <QSqlField>
+#include <QVariant>
+#include <QProgressBar>
 
 
 class TableDataPage : public QWidget {
@@ -24,9 +29,11 @@ public:
 
 	QString PageLabel();
 	void SetupUi();
-	void CreateTableView();
+	void CreateCenter();
 	void CreateLayouts();
-	void CreateButtons();
+	void CreateTop();
+	void CreateBottom();
+	void Style();
 
 signals:
 	void PopulateTableView();
@@ -42,11 +49,15 @@ private:
 	// layouts
 	QVBoxLayout *mainLy;
 	QHBoxLayout *topLy;
+	QHBoxLayout *bottomLy;
 
 	// buttons
 	QPushButton *addRecordBtn;
 	QPushButton *addColumnBtn;
 	QPushButton *exportBtn;
+
+	// progress
+	QProgressBar *aProgressBar;
 };
 
 #endif

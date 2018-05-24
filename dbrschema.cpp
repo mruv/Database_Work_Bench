@@ -2,7 +2,6 @@
 #include "dbrschema.h"
 
 
-
 DbrSchema::DbrSchema(const QString& schemaName, const QString& connectionName, QTreeWidgetItem *parent)
 	: AbstractResource(ResourceType::Database, parent), aSchemaName(schemaName), aConnectionName(connectionName) {
 

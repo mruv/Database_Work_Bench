@@ -1,8 +1,6 @@
 
 #include "dbrtable.h"
 
-#include <QAction>
-
 
 DbrTable::DbrTable(const QString& schemaName, const QString& tableName, 
 	const QString& connectionName, QTreeWidgetItem *parent)

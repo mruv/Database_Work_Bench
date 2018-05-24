@@ -15,6 +15,8 @@
 #include <QSpinBox>
 #include <QMap>
 #include <QString>
+#include <QSqlDatabase>
+#include <QStringList>
 
 
 class DatabaseResourcePicker : public QDialog {
@@ -29,6 +31,8 @@ public:
 	void SetupUi();
 	void CreateLayouts();
 	void CreateInputFields();
+
+	void OnChangeDbms(const QString&);
 
 
 signals:

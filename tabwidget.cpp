@@ -1,8 +1,6 @@
 
 #include "tabwidget.h"
 
-#include <QTabBar>
-
 
 TabWidget::TabWidget(QWidget *parent) : QTabWidget(parent) {
 	
@@ -18,6 +16,8 @@ void TabWidget::OnAddTab(TableDataPage *page) {
 
 void TabWidget::OnCloseTabRequest(int index) {
 
+	// free memory immediately
+	widget(index)->deleteLater();
 	removeTab(index);
 }
 
@@ -26,9 +26,14 @@ void TabWidget::SetupUi() {
 	setTabsClosable(true);
 	setMovable(true);
 
-	/*setStyleSheet(
+	//Style();
+}
+
+void TabWidget::Style() {
+
+	setStyleSheet(
 		"QWidget {"
 		"background-color: #bbb;"
 		"}"
-	);*/
+	);
 }

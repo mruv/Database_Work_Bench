@@ -2,13 +2,6 @@
 #include "databaseresourcepicker.h"
 
 
-#include <QSqlDatabase>
-#include <QStringList>
-
-
-
-
-
 DatabaseResourcePicker::DatabaseResourcePicker(QWidget *p) 
 	: QDialog(p), mainLy(new QFormLayout()), addBtn(new QPushButton("Add")),
 		drivers(new QComboBox()), user(new QLineEdit()), pwd(new QLineEdit()), host(new QLineEdit()),
@@ -51,13 +44,25 @@ void DatabaseResourcePicker::CreateLayouts() {
 	vbox->addStretch();
 }
 
+void DatabaseResourcePicker::OnChangeDbms(const QString& newDbms) {
+
+	if (newDbms == "MySQL") {
+		port->setValue(3306);
+	} else if (newDbms == "PostgreSQL") {
+		port->setValue(5214);
+	} else if (newDbms == "SQLite") {
+		port->setValue(8989);
+	} else {
+		port->setValue(1);
+	}
+}
+
 void DatabaseResourcePicker::CreateInputFields() {
 
 	pwd->setEchoMode(QLineEdit::Password);
 	addBtn->setDisabled(true);
 
 	port->setRange(1, 65535);
-	port->setValue(3306);
 
 	// available
 	QStringList avl;
@@ -82,6 +87,9 @@ void DatabaseResourcePicker::CreateInputFields() {
 	}
 
 	drivers->addItems(avl);
+
+	// initial Dbms and port
+	OnChangeDbms(drivers->currentText());
 
 
 	QObject::connect(host, &QLineEdit::textEdited, [=](){
@@ -123,4 +131,6 @@ void DatabaseResourcePicker::CreateInputFields() {
 
 		close();
 	});
+
+	QObject::connect(drivers, &QComboBox::currentTextChanged, this, &DatabaseResourcePicker::OnChangeDbms);
 }
