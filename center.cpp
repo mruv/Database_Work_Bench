@@ -3,25 +3,25 @@
 
 
 
-Center::Center(QWidget *p) 
-	: QSplitter(p), aResourceTree(new ResourceTree()), aTabWidget(new TabWidget()) {
+Center::Center(QWidget *pParent) 
+	: QSplitter(pParent), mpResourceTree(new ResourceTree()), mpTabWidget(new TabWidget()) {
 	
-	aResourceTree->CreateContextMenus();
-	aResourceTree->Style();
+	mpResourceTree->CreateContextMenus();
+	mpResourceTree->Style();
 
-	aTabWidget->SetupUi();
+	mpTabWidget->SetupUi();
 
-	addWidget(aResourceTree);
-	addWidget(aTabWidget);
+	addWidget(mpResourceTree);
+	addWidget(mpTabWidget);
 	setSizes({300, 1500});
 
-	QObject::connect(this, &Center::AddDatabaseResource, aResourceTree, &ResourceTree::OnAddDatabaseResource);
-	QObject::connect(aResourceTree, &ResourceTree::AddTableDataPage, aTabWidget, &TabWidget::OnAddTab);
+	QObject::connect(this, &Center::AddDatabaseResource, mpResourceTree, &ResourceTree::OnAddDatabaseResource);
+	QObject::connect(mpResourceTree, &ResourceTree::AddTableDataPage, mpTabWidget, &TabWidget::OnAddTab);
 }
 
 Center::~Center() { }
 
-void Center::OnAddDatabaseResource(DatabaseResource *dbResource) {
+void Center::OnAddDatabaseResource(DatabaseResource *pDbResource) {
 
-	emit AddDatabaseResource(dbResource);
+	emit AddDatabaseResource(pDbResource);
 }

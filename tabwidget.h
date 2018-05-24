@@ -12,8 +12,6 @@
 
 class TabWidget : public QTabWidget {
 
-	Q_OBJECT
-	
 
 public:
 	explicit TabWidget(QWidget * = Q_NULLPTR);
@@ -25,6 +23,10 @@ public:
 public slots:
 	void OnCloseTabRequest(int);
 	void OnAddTab(TableDataPage *);
+
+private:
+
+	Q_OBJECT
 };
 
 

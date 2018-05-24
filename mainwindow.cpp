@@ -3,25 +3,26 @@
 #include "databaseresourcepicker.h"
 
 
-MainWindow::MainWindow(QWidget *p) 
-	: QMainWindow(p), aCenter(new Center()) {
+MainWindow::MainWindow(QWidget *pParent) 
+	: QMainWindow(pParent), mpCenter(new Center()) {
 }
 
+MainWindow::~MainWindow() { }
 
 void MainWindow::CreateMenus() {
 
-	aFileMenu = menuBar()->addMenu(tr("&File"));
+	mpFileMenu = menuBar()->addMenu(tr("&File"));
 }
 
 void MainWindow::CreateMenuBar() {
 
-	aFileMenu->addAction(aNewDbAction);
+	mpFileMenu->addAction(mpNewDbAction);
 }
 
 void MainWindow::CreateActions() {
 
-	aNewDbAction = new QAction(tr("&New Database"));
-	QObject::connect(aNewDbAction, &QAction::triggered, this, &MainWindow::ShowDatabaseResourceDialog);
+	mpNewDbAction = new QAction(tr("&New Database"));
+	QObject::connect(mpNewDbAction, &QAction::triggered, this, &MainWindow::ShowDatabaseResourceDialog);
 }
 
 void MainWindow::SetupUi() {
@@ -30,7 +31,7 @@ void MainWindow::SetupUi() {
 	CreateMenus();
 	CreateMenuBar();
 
-	setCentralWidget(aCenter);
+	setCentralWidget(mpCenter);
 	setWindowTitle("Data Droid");
 	setWindowIcon(QIcon("rocket.png"));
 	setMinimumSize(600, 400);
@@ -52,12 +53,12 @@ void MainWindow::SetupUi() {
 
 void MainWindow::ShowDatabaseResourceDialog() {
 
-	DatabaseResourcePicker drp;
+	DatabaseResourcePicker db_resource_picker;
 
-	drp.SetupUi();
+	db_resource_picker.SetupUi();
 
-	QObject::connect(&drp, &DatabaseResourcePicker::AddDatabaseResource,
-		aCenter, &Center::OnAddDatabaseResource);
+	QObject::connect(&db_resource_picker, &DatabaseResourcePicker::AddDatabaseResource,
+		mpCenter, &Center::OnAddDatabaseResource);
 
-	drp.exec();
+	db_resource_picker.exec();
 }

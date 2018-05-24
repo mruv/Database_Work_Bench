@@ -2,18 +2,18 @@
 #include "dbrschema.h"
 
 
-DbrSchema::DbrSchema(const QString& schemaName, const QString& connectionName, QTreeWidgetItem *parent)
-	: AbstractResource(ResourceType::Database, parent), aSchemaName(schemaName), aConnectionName(connectionName) {
+DbrSchema::DbrSchema(const QString& schemaName, const QString& connectionName, QTreeWidgetItem *pParent)
+	: AbstractResource(ResourceType::Database, pParent), mSchemaName(schemaName), mConnectionName(connectionName) {
 
-	setText(0, aSchemaName);
+	setText(0, mSchemaName);
 }
 
 DbrSchema::~DbrSchema() { }
 
 QString DbrSchema::SchemaName() const {
-	return aSchemaName;
+	return mSchemaName;
 }
 
 QString DbrSchema::ConnectionName() const {
-	return aConnectionName;
+	return mConnectionName;
 }

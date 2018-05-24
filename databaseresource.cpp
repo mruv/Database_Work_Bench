@@ -10,34 +10,34 @@
 
 
 DatabaseResource::DatabaseResource(
-	const QString& user, const QString& pwd, const QString& host, const QString& driverName, 
-		const QString& dbmsName, QTreeWidgetItem *parent) 
-			: AbstractResource(ResourceType::DatabaseConnection, parent), aUser(user), aPwd(pwd), 
-				aHost(host), aDriver(driverName), aDbms(dbmsName), aConnectionName(host + "_" + user) {
+	const QString& user, const QString& pwd, const QString& host, const QString& driver, 
+		const QString& dbms, QTreeWidgetItem *pParent) 
+			: AbstractResource(ResourceType::DatabaseConnection, pParent), mUser(user), mPwd(pwd), 
+				mHost(host), mDriver(driver), mDbms(dbms), mConnectionName(host + "_" + user) {
 
-	setText(0, aHost + " | " + aUser + " | " + aDbms);
+	setText(0, mHost + " | " + mUser + " | " + mDbms);
 }
 
 // destroy
 DatabaseResource::~DatabaseResource() {
-	//aDatabase.close();
+	//mDatabase.close();
 }
 
 void DatabaseResource::EstablishConnection() {
 
 
-	if(!aDatabase.isOpen()){// should not be connected
+	if(!mDatabase.isOpen()){// should not be connected
 
-		aDatabase = QSqlDatabase::addDatabase(aDriver, aConnectionName);
-		aDatabase.setHostName(aHost);
-		aDatabase.setUserName(aUser);
-		aDatabase.setPassword(aPwd);
+		mDatabase = QSqlDatabase::addDatabase(mDriver, mConnectionName);
+		mDatabase.setHostName(mHost);
+		mDatabase.setUserName(mUser);
+		mDatabase.setPassword(mPwd);
 
-		if(aDatabase.open()) {
+		if(mDatabase.open()) {
 			OnConnect();
 
 		} else {
-			//std::cout << aDatabase.lastError().text().toStdString() << std::endl; 
+			//std::cout << mDatabase.lastError().text().toStdString() << std::endl; 
 		}
 	}
 }
@@ -45,22 +45,22 @@ void DatabaseResource::EstablishConnection() {
 // display all databases and tables after a successful connection
 void DatabaseResource::OnConnect(){
 
-	QSqlQuery dbsQuery("SHOW DATABASES", aDatabase);
+	QSqlQuery dbsQuery("SHOW DATABASES", mDatabase);
 
 	// all databases
 	while (dbsQuery.next()) {
 
 		QString schemaName   = dbsQuery.value(0).toString();
-		DbrSchema *dbrSchema = new DbrSchema(schemaName, aConnectionName, this);
+		DbrSchema *dbrSchema = new DbrSchema(schemaName, mConnectionName, this);
 
-		QSqlQuery tsQuery("USE " + schemaName, aDatabase);
+		QSqlQuery tsQuery("USE " + schemaName, mDatabase);
 		tsQuery.exec("SHOW TABLES");
 
 		// all tables in each database
 		while (tsQuery.next()) {
 
 			QString tableName = tsQuery.value(0).toString();
-			dbrSchema->addChild(new DbrTable(schemaName, tableName, aConnectionName, dbrSchema));
+			dbrSchema->addChild(new DbrTable(schemaName, tableName, mConnectionName, dbrSchema));
 		}
 		
 		setExpanded(true);
@@ -68,29 +68,29 @@ void DatabaseResource::OnConnect(){
 }
 
 QSqlDatabase DatabaseResource::Database() const {
-	return aDatabase;
+	return mDatabase;
 }
 
 QString DatabaseResource::User() const {
-	return aUser;
+	return mUser;
 }
 
 QString DatabaseResource::Pwd() const {
-	return aPwd;
+	return mPwd;
 }
 
 QString DatabaseResource::Host() const {
-	return aHost;
+	return mHost;
 }
 
 QString DatabaseResource::Driver() const {
-	return aDriver;
+	return mDriver;
 }
 
 QString DatabaseResource::Dbms() const {
-	return aDbms;
+	return mDbms;
 }
 
 QString DatabaseResource::ConnectionName() const {
-	return aConnectionName;
+	return mConnectionName;
 }

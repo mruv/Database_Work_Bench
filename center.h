@@ -19,22 +19,24 @@
 // Application central widget
 class Center : public QSplitter {
 
-	Q_OBJECT
-
 
 public:
 	explicit Center(QWidget * = Q_NULLPTR);
 	~Center();
 
 public slots:
-	void OnAddDatabaseResource(DatabaseResource *);
+	void         OnAddDatabaseResource(DatabaseResource *);
 
 signals:
-	void AddDatabaseResource(DatabaseResource *);
+	void         AddDatabaseResource(DatabaseResource *);
 
 private:
-	ResourceTree *aResourceTree;
-	TabWidget *aTabWidget;
+
+	Q_OBJECT
+
+
+	ResourceTree *mpResourceTree;
+	TabWidget    *mpTabWidget;
 };
 
 

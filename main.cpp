@@ -6,12 +6,12 @@
 
 int main(int argc, char **argv){
 	
-	QApplication *app = new QApplication(argc, argv);
+	QApplication *pApp = new QApplication(argc, argv);
 
-	MainWindow w;
+	MainWindow window;
 
-	w.SetupUi();
-	w.show();
+	window.SetupUi();
+	window.show();
 	
-	return app->exec();
+	return pApp->exec();
 }

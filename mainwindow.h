@@ -16,30 +16,30 @@
 
 class MainWindow : public QMainWindow {
 
-	Q_OBJECT
 
 public:
-	MainWindow(QWidget * = Q_NULLPTR);
+	explicit MainWindow(QWidget * = Q_NULLPTR);
+	~MainWindow();
 
-	void CreateMenus();
-	void CreateMenuBar();
-	void CreateActions();
-	void SetupUi();
+	void    CreateMenus();
+	void    CreateMenuBar();
+	void    CreateActions();
+	void    SetupUi();
 
 public slots:
 	
-	void ShowDatabaseResourceDialog();
+	void    ShowDatabaseResourceDialog();
 
 private:
-	Center *aCenter;
 
-	// menus
-	QMenu *aFileMenu;
-	QMenu *aEditMenu;
+	Q_OBJECT
 
-	// actions
-	QAction *aNewDbAction;
-	QAction *aNewFileAction;
+
+	Center  *mpCenter;
+	QMenu   *mpFileMenu;
+	QMenu   *mpEditMenu;
+	QAction *mpNewDbAction;
+	QAction *mpNewFileAction;
 };
 
 

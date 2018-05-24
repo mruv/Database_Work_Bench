@@ -2,16 +2,16 @@
 #include "tabwidget.h"
 
 
-TabWidget::TabWidget(QWidget *parent) : QTabWidget(parent) {
+TabWidget::TabWidget(QWidget *pParent) : QTabWidget(pParent) {
 	
 	QObject::connect(this, &QTabWidget::tabCloseRequested, this, &TabWidget::OnCloseTabRequest);
 }
 
 TabWidget::~TabWidget() { }
 
-void TabWidget::OnAddTab(TableDataPage *page) {
+void TabWidget::OnAddTab(TableDataPage *pPage) {
 
-	addTab(page, page->PageLabel());
+	addTab(pPage, pPage->PageLabel());
 }
 
 void TabWidget::OnCloseTabRequest(int index) {

@@ -3,9 +3,9 @@
 
 
 DatabaseResourcePicker::DatabaseResourcePicker(QWidget *p) 
-	: QDialog(p), mainLy(new QFormLayout()), addBtn(new QPushButton("Add")),
-		drivers(new QComboBox()), user(new QLineEdit()), pwd(new QLineEdit()), host(new QLineEdit()),
-			port(new QSpinBox()) {
+	: QDialog(p), mpMainLy(new QFormLayout()), mpAddBtn(new QPushButton("Add")),
+		mpDrivers(new QComboBox()), mpUser(new QLineEdit()), mpPwd(new QLineEdit()), mpHost(new QLineEdit()),
+			mpPort(new QSpinBox()) {
 
 }
 
@@ -23,114 +23,114 @@ void DatabaseResourcePicker::SetupUi() {
 
 void DatabaseResourcePicker::CreateLayouts() {
 
-	vbox = new QVBoxLayout(this);
-	hbox = new QHBoxLayout();
+	mpVbox = new QVBoxLayout(this);
+	mpHbox = new QHBoxLayout();
 
-	mainLy->addRow(tr("Database Driver"), drivers);
-	mainLy->addRow(tr("Host"), host);
-	mainLy->addRow(tr("Port"), port);
-	mainLy->addRow(tr("User"), user);
-	mainLy->addRow(tr("Password"), pwd);
-	mainLy->addRow(tr(""), addBtn);
+	mpMainLy->addRow(tr("Database Driver"), mpDrivers);
+	mpMainLy->addRow(tr("mpHost"), mpHost);
+	mpMainLy->addRow(tr("mpPort"), mpPort);
+	mpMainLy->addRow(tr("mpUser"), mpUser);
+	mpMainLy->addRow(tr("Password"), mpPwd);
+	mpMainLy->addRow(tr(""), mpAddBtn);
 
-	//mainLy->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
+	//mpMainLy->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
 
-	hbox->addStretch();
-	hbox->addLayout(mainLy);
-	hbox->addStretch();
+	mpHbox->addStretch();
+	mpHbox->addLayout(mpMainLy);
+	mpHbox->addStretch();
 
-	vbox->addStretch();
-	vbox->addLayout(hbox);
-	vbox->addStretch();
+	mpVbox->addStretch();
+	mpVbox->addLayout(mpHbox);
+	mpVbox->addStretch();
 }
 
 void DatabaseResourcePicker::OnChangeDbms(const QString& newDbms) {
 
 	if (newDbms == "MySQL") {
-		port->setValue(3306);
+		mpPort->setValue(3306);
 	} else if (newDbms == "PostgreSQL") {
-		port->setValue(5214);
+		mpPort->setValue(5214);
 	} else if (newDbms == "SQLite") {
-		port->setValue(8989);
+		mpPort->setValue(8989);
 	} else {
-		port->setValue(1);
+		mpPort->setValue(1);
 	}
 }
 
 void DatabaseResourcePicker::CreateInputFields() {
 
-	pwd->setEchoMode(QLineEdit::Password);
-	addBtn->setDisabled(true);
+	mpPwd->setEchoMode(QLineEdit::Password);
+	mpAddBtn->setDisabled(true);
 
-	port->setRange(1, 65535);
+	mpPort->setRange(1, 65535);
 
 	// available
-	QStringList avl;
-	QMap<QString, QString> drvrsMap;
+	QStringList            available_drivers;
+	QMap<QString, QString> drivers_map;
 
 	for(QString driver : QSqlDatabase::drivers()) {
 
-		if(driver.contains("mysql", Qt::CaseInsensitive) && !avl.contains("MySQL")){
-			avl.append("MySQL");
-			drvrsMap.insert(tr("MySQL"), tr( "QMYSQL"));
+		if(driver.contains("mysql", Qt::CaseInsensitive) && !available_drivers.contains("MySQL")){
+			available_drivers.append("MySQL");
+			drivers_map.insert(tr("MySQL"), tr( "QMYSQL"));
 		}
 
-		if(driver.contains("sqlite", Qt::CaseInsensitive) && !avl.contains("SQLite")){
-			avl.append("SQLite");
-			drvrsMap.insert(tr("SQLite"), tr("QSQLITE"));
+		if(driver.contains("sqlite", Qt::CaseInsensitive) && !available_drivers.contains("SQLite")){
+			available_drivers.append("SQLite");
+			drivers_map.insert(tr("SQLite"), tr("QSQLITE"));
 		}
 
-		if(driver.contains("psql", Qt::CaseInsensitive) && !avl.contains("PostgreSQL")){
-			avl.append("PostgreSQL");
-			drvrsMap.insert(tr("PostgreSQL"), tr( "QPSQL"));
+		if(driver.contains("psql", Qt::CaseInsensitive) && !available_drivers.contains("PostgreSQL")){
+			available_drivers.append("PostgreSQL");
+			drivers_map.insert(tr("PostgreSQL"), tr( "QPSQL"));
 		}
 	}
 
-	drivers->addItems(avl);
+	mpDrivers->addItems(available_drivers);
 
-	// initial Dbms and port
-	OnChangeDbms(drivers->currentText());
+	// initial Dbms and mpPort
+	OnChangeDbms(mpDrivers->currentText());
 
 
-	QObject::connect(host, &QLineEdit::textEdited, [=](){
-		if(host->text().length() > 0 && pwd->text().length() > 0 && user->text().length() > 0) {
+	QObject::connect(mpHost, &QLineEdit::textEdited, [=](){
+		if(mpHost->text().length() > 0 && mpPwd->text().length() > 0 && mpUser->text().length() > 0) {
 
-			addBtn->setEnabled(true);
+			mpAddBtn->setEnabled(true);
 		} else {
-			addBtn->setDisabled(true);
+			mpAddBtn->setDisabled(true);
 		}
 	});
 
-	QObject::connect(user, &QLineEdit::textEdited, [=](){
-		if(host->text().length() > 0 && pwd->text().length() > 0 && user->text().length() > 0) {
+	QObject::connect(mpUser, &QLineEdit::textEdited, [=](){
+		if(mpHost->text().length() > 0 && mpPwd->text().length() > 0 && mpUser->text().length() > 0) {
 
-			addBtn->setEnabled(true);
+			mpAddBtn->setEnabled(true);
 		} else {
-			addBtn->setDisabled(true);
+			mpAddBtn->setDisabled(true);
 		}
 	});
 
-	QObject::connect(pwd, &QLineEdit::textEdited, [=](){
-		if(host->text().length() > 0 && pwd->text().length() > 0 && user->text().length() > 0) {
+	QObject::connect(mpPwd, &QLineEdit::textEdited, [=](){
+		if(mpHost->text().length() > 0 && mpPwd->text().length() > 0 && mpUser->text().length() > 0) {
 
-			addBtn->setEnabled(true);
+			mpAddBtn->setEnabled(true);
 		} else {
-			addBtn->setDisabled(true);
+			mpAddBtn->setDisabled(true);
 		}
 	});
 
-	QObject::connect(addBtn, &QPushButton::clicked, [=](){
+	QObject::connect(mpAddBtn, &QPushButton::clicked, [=](){
 		
 		emit AddDatabaseResource(
 			new DatabaseResource(
-				user->text(), pwd->text(),
-				host->text(), drvrsMap.value(drivers->currentText()),
-				drivers->currentText()
+				mpUser->text(), mpPwd->text(),
+				mpHost->text(), drivers_map.value(mpDrivers->currentText()),
+				mpDrivers->currentText()
 				)
 			);
 
 		close();
 	});
 
-	QObject::connect(drivers, &QComboBox::currentTextChanged, this, &DatabaseResourcePicker::OnChangeDbms);
+	QObject::connect(mpDrivers, &QComboBox::currentTextChanged, this, &DatabaseResourcePicker::OnChangeDbms);
 }

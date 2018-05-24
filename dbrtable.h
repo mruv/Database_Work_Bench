@@ -12,7 +12,6 @@
 // Database Resource (Dbr) Table
 class DbrTable : public AbstractResource  {
 
-	Q_OBJECT
 
 public:
 	explicit DbrTable(const QString&, const QString&, const QString&, QTreeWidgetItem * = Q_NULLPTR);
@@ -24,9 +23,13 @@ public:
 
 
 private:
-	QString aSchemaName;
-	QString aTableName;
-	QString aConnectionName;
+
+	Q_OBJECT
+
+
+	QString mSchemaName;
+	QString mTableName;
+	QString mConnectionName;
 };
 
 

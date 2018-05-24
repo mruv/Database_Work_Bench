@@ -12,14 +12,14 @@ class AbstractResource : public QWidget, public QTreeWidgetItem {
 
 
 public:
-	explicit AbstractResource(ResourceType, QTreeWidgetItem * = Q_NULLPTR);
+	explicit AbstractResource(const ResourceType&, QTreeWidgetItem * = Q_NULLPTR);
 	virtual ~AbstractResource();
 
 	ResourceType Type() const;
 
 
 protected:
-	ResourceType aResourceType;
+	ResourceType mResourceType;
 };
 
 

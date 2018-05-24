@@ -3,23 +3,23 @@
 
 
 DbrTable::DbrTable(const QString& schemaName, const QString& tableName, 
-	const QString& connectionName, QTreeWidgetItem *parent)
-		: AbstractResource(ResourceType::Table, parent), aSchemaName(schemaName), 
-			aTableName(tableName), aConnectionName(connectionName) {
+	const QString& connectionName, QTreeWidgetItem *pParent)
+		: AbstractResource(ResourceType::Table, pParent), mSchemaName(schemaName), 
+			mTableName(tableName), mConnectionName(connectionName) {
 
-	setText(0, aTableName);
+	setText(0, mTableName);
 }
 
 DbrTable::~DbrTable() { }
 
 QString DbrTable::SchemaName() const {
-	return aSchemaName;
+	return mSchemaName;
 }
 
 QString DbrTable::TableName() const {
-	return aTableName;
+	return mTableName;
 }
 
 QString DbrTable::ConnectionName() const {
-	return aConnectionName;
+	return mConnectionName;
 }

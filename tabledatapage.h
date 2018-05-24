@@ -20,44 +20,42 @@
 
 class TableDataPage : public QWidget {
 
-	Q_OBJECT
-
 
 public:
 	explicit TableDataPage(const QString&, const QString&, const QSqlDatabase&, QWidget * = Q_NULLPTR);
 	~TableDataPage();
 
-	QString PageLabel();
-	void SetupUi();
-	void CreateCenter();
-	void CreateLayouts();
-	void CreateTop();
-	void CreateBottom();
-	void Style();
+	QString        PageLabel();
+	void           SetupUi();
+	void           CreateCenter();
+	void           CreateLayouts();
+	void           CreateTop();
+	void           CreateBottom();
+	void           Style();
 
 signals:
-	void PopulateTableView();
-
+	void           PopulateTableView();
 
 private:
-	QSqlDatabase   database;
-	QSqlTableModel *aSqlTableModel;
-	QTableView     *aTableView;
-	QString        aTableName;
-	QString        aSchemaName;
 
-	// layouts
-	QVBoxLayout *mainLy;
-	QHBoxLayout *topLy;
-	QHBoxLayout *bottomLy;
+	Q_OBJECT
 
-	// buttons
-	QPushButton *addRecordBtn;
-	QPushButton *addColumnBtn;
-	QPushButton *exportBtn;
 
-	// progress
-	QProgressBar *aProgressBar;
+	QSqlDatabase   mDatabase;
+	QSqlTableModel *mpSqlTableModel;
+	QTableView     *mpTableView;
+	QString        mTableName;
+	QString        mSchemaName;
+
+	QVBoxLayout    *mpMainLy;
+	QHBoxLayout    *mpTopLy;
+	QHBoxLayout    *mpBottomLy;
+
+	QPushButton    *mpAddRecordBtn;
+	QPushButton    *mpAddColumnBtn;
+	QPushButton    *mpExportBtn;
+
+	QProgressBar   *mpProgressBar;
 };
 
 #endif

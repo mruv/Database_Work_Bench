@@ -3,13 +3,13 @@
 
 
 
-AbstractResource::AbstractResource(ResourceType rType, QTreeWidgetItem *parent)
-	: QTreeWidgetItem(parent, QTreeWidgetItem::UserType), aResourceType(rType) {
+AbstractResource::AbstractResource(const ResourceType& resourceType, QTreeWidgetItem *pParent)
+	: QTreeWidgetItem(pParent, QTreeWidgetItem::UserType), mResourceType(resourceType) {
 
 }
 
 AbstractResource::~AbstractResource() { }
 
 ResourceType AbstractResource::Type() const {
-	return aResourceType;
+	return mResourceType;
 }

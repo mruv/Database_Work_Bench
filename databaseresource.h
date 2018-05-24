@@ -15,35 +15,38 @@
 */
 class DatabaseResource : public AbstractResource {
 
-	Q_OBJECT
-
+	
 public:
 	explicit DatabaseResource(const QString&, const QString&, const QString&, const QString&, const QString&, QTreeWidgetItem * = Q_NULLPTR);
 	~DatabaseResource();
 
 	QSqlDatabase Database() const;
-	QString User() const;
-	QString Pwd() const;
-	QString Host() const;
-	QString Driver() const;
-	QString Dbms() const;
-	QString ConnectionName() const;
+	QString      User() const;
+	QString      Pwd() const;
+	QString      Host() const;
+	QString      Driver() const;
+	QString      Dbms() const;
+	QString      ConnectionName() const;
 
 
 public slots:
-	void EstablishConnection();
-	void OnConnect();
+	void         EstablishConnection();
+	void         OnConnect();
 
 private:
-	// connection
-	QSqlDatabase aDatabase;
 
-	QString      aUser;
-	QString      aPwd;
-	QString      aHost;
-	QString      aDriver;
-	QString      aDbms;
-	QString      aConnectionName;
+	Q_OBJECT
+
+	
+	// connection
+	QSqlDatabase mDatabase;
+
+	QString      mUser;
+	QString      mPwd;
+	QString      mHost;
+	QString      mDriver;
+	QString      mDbms;
+	QString      mConnectionName;
 };
 
 

@@ -21,34 +21,36 @@
 
 class DatabaseResourcePicker : public QDialog {
 
-	Q_OBJECT
-
-
+	
 public:
 	explicit DatabaseResourcePicker(QWidget * = Q_NULLPTR);
 	~DatabaseResourcePicker();
 
-	void SetupUi();
-	void CreateLayouts();
-	void CreateInputFields();
+	void        SetupUi();
+	void        CreateLayouts();
+	void        CreateInputFields();
 
-	void OnChangeDbms(const QString&);
+public slots:
+	void        OnChangeDbms(const QString&);
 
 
 signals:
-	void AddDatabaseResource(DatabaseResource *);
+	void        AddDatabaseResource(DatabaseResource *);
 
 private:
 
-	QFormLayout *mainLy;
-	QPushButton *addBtn;
-	QComboBox   *drivers;
-	QLineEdit   *user;
-	QLineEdit   *pwd;
-	QLineEdit   *host;
-	QSpinBox    *port;
-	QVBoxLayout *vbox;
-	QHBoxLayout *hbox;
+	Q_OBJECT
+
+	
+	QFormLayout *mpMainLy;
+	QPushButton *mpAddBtn;
+	QComboBox   *mpDrivers;
+	QLineEdit   *mpUser;
+	QLineEdit   *mpPwd;
+	QLineEdit   *mpHost;
+	QSpinBox    *mpPort;
+	QVBoxLayout *mpVbox;
+	QHBoxLayout *mpHbox;
 };
 
 

@@ -2,7 +2,7 @@
 #include "resourcetree.h"
 
 
-ResourceTree::ResourceTree(QWidget *parent) : QTreeWidget(parent) {
+ResourceTree::ResourceTree(QWidget *pParent) : QTreeWidget(pParent) {
 
 	setHeaderLabels({"Resource"});
 	setContextMenuPolicy(Qt::CustomContextMenu);
@@ -13,10 +13,10 @@ ResourceTree::ResourceTree(QWidget *parent) : QTreeWidget(parent) {
 
 ResourceTree::~ResourceTree() { }
 
-void ResourceTree::OnAddDatabaseResource(DatabaseResource *dbResource) {
+void ResourceTree::OnAddDatabaseResource(DatabaseResource *pDbResource) {
 
-	addTopLevelItem(dbResource);
-	dbResource->EstablishConnection();
+	addTopLevelItem(pDbResource);
+	pDbResource->EstablishConnection();
 }
 
 void ResourceTree::OnCustomContextMenuRequest(const QPoint& pos) {
@@ -49,16 +49,16 @@ void ResourceTree::OnCustomContextMenuRequest(const QPoint& pos) {
 
 void ResourceTree::ShowConnectionContextMenu(const QPoint& pos) {
 
-	DatabaseResource *dbRsc = static_cast<DatabaseResource *>(itemAt(pos));
+	DatabaseResource *p_db_resource = static_cast<DatabaseResource *>(itemAt(pos));
 
-	if(dbRsc) {
-		QAction *act = aDbConnContextMenu->exec(this->viewport()->mapToGlobal(pos));
+	if(p_db_resource) {
+		QAction *p_action = mpDbConnContextMenu->exec(this->viewport()->mapToGlobal(pos));
 
-		if(act == aConnectAction) {
+		if(p_action == mpConnectAction) {
 			
-		} else if(act == aDisconnectAction) {
+		} else if(p_action == mpDisconnectAction) {
 			
-		} else if(act == aNewDbAction) {
+		} else if(p_action == mpNewDbAction) {
 			
 		} else {
 			// do nothing
@@ -68,14 +68,14 @@ void ResourceTree::ShowConnectionContextMenu(const QPoint& pos) {
 
 void ResourceTree::ShowDatabaseContextMenu(const QPoint& pos) {
 
-	DbrSchema *dbSchm = static_cast<DbrSchema *>(itemAt(pos));
+	DbrSchema *p_db_schema = static_cast<DbrSchema *>(itemAt(pos));
 
-	if(dbSchm) {
-		QAction *act = aDbrContextMenu->exec(this->viewport()->mapToGlobal(pos));
+	if(p_db_schema) {
+		QAction *p_action = mpDbrContextMenu->exec(this->viewport()->mapToGlobal(pos));
 
-		if(act == aNewTableAction) {
+		if(p_action == mpNewTableAction) {
 			
-		} else if(act == aDropDbAction) {
+		} else if(p_action == mpDropDbAction) {
 			
 		} else {
 			// do nothing
@@ -85,28 +85,28 @@ void ResourceTree::ShowDatabaseContextMenu(const QPoint& pos) {
 
 void ResourceTree::ShowTableContextMenu(const QPoint& pos) {
 
-	DbrTable *dbTbl = static_cast<DbrTable *>(itemAt(pos));
+	DbrTable *p_db_table = static_cast<DbrTable *>(itemAt(pos));
 
-	if(dbTbl) {
-		QAction *act = aTrContextMenu->exec(this->viewport()->mapToGlobal(pos));
+	if(p_db_table) {
+		QAction *p_action = mpTrContextMenu->exec(this->viewport()->mapToGlobal(pos));
 
-		if(act == aViewTableDataAction) {
+		if(p_action == mpViewTableDataAction) {
 			
 
-			if(QSqlDatabase::contains(dbTbl->ConnectionName())) {
+			if(QSqlDatabase::contains(p_db_table->ConnectionName())) {
 
-				TableDataPage *newTab = new TableDataPage(dbTbl->SchemaName(), dbTbl->TableName(),
-					QSqlDatabase::database(dbTbl->ConnectionName()));
+				TableDataPage *p_new_tab = new TableDataPage(p_db_table->SchemaName(), p_db_table->TableName(),
+					QSqlDatabase::database(p_db_table->ConnectionName()));
 
 
-				newTab->SetupUi();
-				emit AddTableDataPage(newTab);
+				p_new_tab->SetupUi();
+				emit AddTableDataPage(p_new_tab);
 
 			} else {
 				// no such connection
 			}
 			
-		} else if(act == aDeleteTableAction) {
+		} else if(p_action == mpDeleteTableAction) {
 			
 		} else {
 			// do nothing
@@ -116,20 +116,20 @@ void ResourceTree::ShowTableContextMenu(const QPoint& pos) {
 
 void ResourceTree::CreateContextMenus() {
 
-	aDbConnContextMenu = new QMenu(this);
-	aDbrContextMenu    = new QMenu(this);
-	aTrContextMenu     = new QMenu(this);
+	mpDbConnContextMenu   = new QMenu(this);
+	mpDbrContextMenu      = new QMenu(this);
+	mpTrContextMenu       = new QMenu(this);
 
 	// add actions
-	aConnectAction       = aDbConnContextMenu->addAction("Connect");
-	aDisconnectAction    = aDbConnContextMenu->addAction("Disconnect");
-	aNewDbAction         = aDbConnContextMenu->addAction("New database");
+	mpConnectAction       = mpDbConnContextMenu->addAction("Connect");
+	mpDisconnectAction    = mpDbConnContextMenu->addAction("Disconnect");
+	mpNewDbAction         = mpDbConnContextMenu->addAction("New database");
 
-	aNewTableAction      = aDbrContextMenu->addAction("New table");
-	aDropDbAction        = aDbrContextMenu->addAction("Drop");
+	mpNewTableAction      = mpDbrContextMenu->addAction("New table");
+	mpDropDbAction        = mpDbrContextMenu->addAction("Drop");
 
-	aViewTableDataAction = aTrContextMenu->addAction("View data");
-	aDeleteTableAction   = aTrContextMenu->addAction("Delete");
+	mpViewTableDataAction = mpTrContextMenu->addAction("View data");
+	mpDeleteTableAction   = mpTrContextMenu->addAction("Delete");
 }
 
 void ResourceTree::Style() const {

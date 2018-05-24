@@ -13,8 +13,6 @@
 // Database Resource Schema
 class DbrSchema : public AbstractResource {
 
-	Q_OBJECT
-
 
 public:
 	explicit DbrSchema(const QString&, const QString&, QTreeWidgetItem * = Q_NULLPTR);
@@ -24,8 +22,12 @@ public:
 	QString ConnectionName() const;
 
 private:
-	QString aSchemaName;
-	QString aConnectionName;
+
+	Q_OBJECT
+
+	
+	QString mSchemaName;
+	QString mConnectionName;
 };
 
 
