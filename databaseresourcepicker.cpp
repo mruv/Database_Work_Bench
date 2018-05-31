@@ -27,9 +27,9 @@ void DatabaseResourcePicker::CreateLayouts() {
 	mpHbox = new QHBoxLayout();
 
 	mpMainLy->addRow(tr("Database Driver"), mpDrivers);
-	mpMainLy->addRow(tr("mpHost"), mpHost);
-	mpMainLy->addRow(tr("mpPort"), mpPort);
-	mpMainLy->addRow(tr("mpUser"), mpUser);
+	mpMainLy->addRow(tr("Host"), mpHost);
+	mpMainLy->addRow(tr("Port"), mpPort);
+	mpMainLy->addRow(tr("User"), mpUser);
 	mpMainLy->addRow(tr("Password"), mpPwd);
 	mpMainLy->addRow(tr(""), mpAddBtn);
 
